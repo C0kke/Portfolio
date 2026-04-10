@@ -1,3 +1,27 @@
+# Cokke | Portfolio
+
+Live site: **https://c0kke.github.io/Portfolio/**
+
+## Deployment
+
+This project is deployed automatically to **GitHub Pages** via GitHub Actions whenever changes are pushed to `main`.
+
+The workflow (`.github/workflows/deploy-pages.yml`) will:
+1. Install dependencies with `npm ci`
+2. Build the project with `npm run build`
+3. Publish the `dist/` output to GitHub Pages
+
+> **Note:** In your repository settings, go to **Settings → Pages → Build and deployment** and set the source to **GitHub Actions**.
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
