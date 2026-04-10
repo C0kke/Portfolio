@@ -20,61 +20,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { FadeIn } from "@/components/FadeIn"
+import { projects } from "@/data/projects"
 
 export default function App() {
-  // technologies array removed as it is not used in the return
-
-  const projects = [
-    {
-      title: "E-commerce para PYME",
-      description: "Tienda online completa con carrito de compras y panel administrativo",
-      tech: ["React", "NestJS", "PostgreSQL"],
-      size: "large",
-      githubUrl: "https://github.com/C0kke",
-      liveUrl: "https://ecommerce-demo.com",
-      previewImage: "/previews/ecommerce.png"
-    },
-    {
-      title: "Sistema de Gestión",
-      description: "CRM personalizado para pequeñas empresas",
-      tech: ["Java", "Spring Boot", "MySQL"],
-      size: "medium",
-      githubUrl: "https://github.com/C0kke",
-      liveUrl: "https://crm-demo.com",
-      previewImage: "/previews/management.png"
-    },
-    {
-      title: "Landing Page Corporativa",
-      description: "Sitio web responsivo con formulario de contacto",
-      tech: ["HTML", "CSS", "JavaScript"],
-      size: "medium",
-      githubUrl: "https://github.com/C0kke",
-      liveUrl: "https://landing-demo.com",
-      previewImage: "/previews/landing.png"
-    },
-    {
-      title: "API REST",
-      description: "Backend escalable con autenticación JWT",
-      tech: ["NestJS", "MongoDB"],
-      size: "small",
-      githubUrl: "https://github.com/C0kke"
-    },
-    {
-      title: "Dashboard Analytics",
-      description: "Panel de control con métricas en tiempo real",
-      tech: ["React", "Redis"],
-      size: "small",
-      githubUrl: "https://github.com/C0kke"
-    },
-    {
-      title: "App Móvil Web",
-      description: "PWA para gestión de inventarios",
-      tech: ["React", "PostgreSQL"],
-      size: "small",
-      githubUrl: "https://github.com/C0kke"
-    },
-  ]
-
   return (
     <div className="min-h-screen bg-black text-white selection:bg-red-500/30">
       {/* Hero Section */}
