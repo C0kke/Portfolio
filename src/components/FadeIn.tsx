@@ -6,9 +6,10 @@ interface FadeInProps {
   delay?: number
   direction?: "up" | "down" | "left" | "right" | "none"
   blur?: boolean
+  className?: string
 }
 
-export const FadeIn = ({ children, delay = 0, direction = "up", blur = true }: FadeInProps) => {
+export const FadeIn = ({ children, delay = 0, direction = "up", blur = true, className }: FadeInProps) => {
   const directions = {
     up: { y: 40 },
     down: { y: -40 },
@@ -19,6 +20,7 @@ export const FadeIn = ({ children, delay = 0, direction = "up", blur = true }: F
 
   return (
     <motion.div
+      className={className}
       initial={{
         opacity: 0,
         ...directions[direction],

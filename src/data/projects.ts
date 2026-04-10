@@ -29,22 +29,22 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
-    title: "Fit Fashion",
-    description:
-      "Tienda de ropa deportiva con catálogo de productos, carrito de compras y panel administrativo.",
-    tech: ["JavaScript", "React", "NestJS", "PostgreSQL"],
+    title: "Catálogo Maranatha",
+    description: "Catálogo de productos para ferretería local",
+    tech: ["React", "Supabase", "Cloudinary", "Cloudflare", "Vercel"],
     size: "large",
-    githubUrl: "https://github.com/C0kke/FitFashion",
-    previewImage: "/previews/ecommerce.png",
+    githubUrl: "",
+    liveUrl: "https://ferremaranatha.cl",
+    previewImage: "/previews/ferremaranatha.png",
   },
   {
-    title: "Sistema de Gestión de Incidencias",
+    title: "Fit Fashion",
     description:
-      "Aplicación full-stack para registrar, asignar y resolver incidencias internas de una organización.",
-    tech: ["JavaScript", "Node.js", "Express", "MongoDB"],
-    size: "medium",
-    githubUrl: "https://github.com/C0kke/FrontendGestionIncidencias",
-    previewImage: "/previews/management.png",
+      "E-commerce de moda con arquitectura basada en microservicios y k8s",
+    tech: ["JavaScript", "React", "Go", "Python", "API REST", "Docker", "Kubernetes", "PostgreSQL", "RabbitMQ", "Kafka"],
+    size: "large",
+    githubUrl: "https://github.com/C0kke/FitFashion",
+    previewImage: "/previews/default.png",
   },
   {
     title: "Encriptador de Texto",
@@ -53,7 +53,25 @@ export const projects: Project[] = [
     tech: ["HTML", "CSS", "JavaScript"],
     size: "medium",
     githubUrl: "https://github.com/C0kke/Encriptador",
-    previewImage: "/previews/landing.png",
+    previewImage: "/previews/encriptador.png",
+    liveUrl: "https://c0kke.github.io/Encriptador/",
+  },
+  {
+    title: "Screenmatch",
+    description: "Catálogo de series y películas con API externa",
+    tech: ["Java", "Spring Boot", "PostgreSQL"],
+    size: "medium",
+    githubUrl: "https://github.com/C0kke/Screenmatch",
+    previewImage: "/previews/screenmatch.png",
+  },
+  {
+    title: "Sistema de Gestión de Incidencias",
+    description:
+      "Aplicación full-stack para registrar, asignar y resolver incidencias internas de una organización, permite generar reportes.",
+    tech: ["JavaScript", "Node.js", "Express", "MySQL", "Cloudinary", "SSH"],
+    size: "medium",
+    githubUrl: "https://github.com/C0kke/FrontendGestionIncidencias",
+    previewImage: "/previews/default.png",
   },
   {
     title: "ForoHub",
@@ -62,14 +80,16 @@ export const projects: Project[] = [
     tech: ["Java", "Spring Boot", "MySQL"],
     size: "small",
     githubUrl: "https://github.com/C0kke/ForoHub",
+    previewImage: "/previews/default.png",
   },
   {
-    title: "Literalura",
+    title: "Breakout",
     description:
-      "Aplicación de catálogo de libros que consume la API Gutendex y persiste datos en PostgreSQL.",
-    tech: ["Java", "Spring Boot", "PostgreSQL"],
+      "Videojuego clásico de romper bloques con una paleta y una pelota.",
+    tech: ["HTML", "Javascript"],
     size: "small",
-    githubUrl: "https://github.com/C0kke/Literalura",
+    githubUrl: "https://github.com/C0kke/ProyectBreakout",
+    previewImage: "/previews/breakout.png",
   },
   {
     title: "Coquimbo VR - Nivel 1",
@@ -78,5 +98,6 @@ export const projects: Project[] = [
     tech: ["Unity", "C#", "VR"],
     size: "small",
     githubUrl: "https://github.com/C0kke/Coquimbo_VR_LVL1",
+    previewImage: "/previews/default.png",
   },
 ];

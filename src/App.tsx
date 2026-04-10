@@ -10,6 +10,10 @@ import {
   Zap,
   ExternalLink,
   Globe,
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
+  ChevronRight,
   // Chrome is not in lucide-react, using FaChrome
 } from "lucide-react"
 import { FaReact, FaHtml5, FaGithub, FaCloudflare, FaLinkedin, FaChrome } from "react-icons/fa";
@@ -18,11 +22,60 @@ import { DiRedis, DiPostgresql } from "react-icons/di";
 import { RiVercelLine } from "react-icons/ri";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
 import { FadeIn } from "@/components/FadeIn"
 import { projects } from "@/data/projects"
+import { useState, useRef } from "react";
+
+const TechSlider = ({ tech }: { tech: string[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 200;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <div className="relative group/tech mt-auto">
+      <button
+        onClick={() => scroll("left")}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 h-full px-1 bg-gradient-to-r from-gray-950 to-transparent opacity-0 group-hover/tech:opacity-100 transition-opacity"
+      >
+        <ChevronLeft className="h-4 w-4 text-red-400" />
+      </button>
+      
+      <div 
+        ref={scrollRef}
+        className="flex flex-row gap-2 mb-8 overflow-x-auto no-scrollbar whitespace-nowrap snap-x px-4"
+      >
+        {tech.map((t, i) => (
+          <span
+            key={i}
+            className="inline-block px-4 py-1.5 bg-red-900/10 text-red-300 text-[10px] font-bold rounded-md border border-red-900/20 uppercase tracking-widest snap-start min-w-[124px] text-center"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+
+      <button
+        onClick={() => scroll("right")}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 h-full px-1 bg-gradient-to-l from-gray-950 to-transparent opacity-0 group-hover/tech:opacity-100 transition-opacity"
+      >
+        <ChevronRight className="h-4 w-4 text-red-400" />
+      </button>
+    </div>
+  );
+};
 
 export default function App() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const visibleProjects = showAllProjects ? projects : projects.slice(0, 4);
+
   return (
     <div className="min-h-screen bg-black text-white selection:bg-red-500/30">
       {/* Hero Section */}
@@ -71,9 +124,9 @@ export default function App() {
               <h2 className="text-4xl md:text-5xl font-bold text-center mb-10 text-red-400">Sobre Mí</h2>
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-6 text-white font-outfit">Estudiante de Ingeniería Civil en Informática y Computación</h3>
+                  <h3 className="text-2xl font-semibold mb-6 text-white font-outfit">Desarrollador JR</h3>
                   <p className="text-gray-300 mb-6 leading-relaxed">
-                    Mi nombre es Jorge Bustos, estoy cursando mi penúltimo año de ingeniería. Durante estos años he aprendido
+                    Mi nombre es Jorge Bustos, estoy cursando mi último año de ingeniería. Durante estos años he aprendido
                     sobre el mundo de desarrollo web. A medida que complemento mis aprendizajes con certificaciones.
                     Me especializo en crear soluciones web personalizadas, tanto páginas como aplicaciones web.
                   </p>
@@ -101,7 +154,7 @@ export default function App() {
                     <div className="space-y-6">
                       <div className="flex items-center justify-between">
                         <span className="text-gray-400">Experiencia</span>
-                        <span className="text-red-400 font-bold text-lg">2+ años</span>
+                        <span className="text-red-400 font-bold text-lg">+3 años</span>
                       </div>
                       <div>
                         <span className="text-gray-400 block mb-2">Certificaciones</span>
@@ -219,88 +272,106 @@ export default function App() {
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-red-400">Proyectos</h2>
           </FadeIn>
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]">
-              {projects.map((project, index) => (
-                <FadeIn key={index} delay={index * 0.1}>
-                  <Card
-                    className={`
-                      border-gray-800 hover:border-red-600 group overflow-hidden flex flex-col h-full
-                      ${project.size === "large" ? "md:col-span-2 md:row-span-2" : ""}
-                      ${project.size === "medium" ? "md:col-span-2" : ""}
-                    `}
-                  >
-                  {project.previewImage && (
-                    <div className={cn(
-                      "relative overflow-hidden border-b border-gray-800",
-                      project.size === "large" ? "h-80" : "h-40"
-                    )}>
-                      <img
-                        src={project.previewImage}
-                        alt={project.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                        {project.liveUrl && (
-                          <Button size="sm" className="rounded-full" onClick={() => window.open(project.liveUrl, "_blank")}>
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Demo
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                  <CardContent className="p-6 flex-grow flex flex-col justify-between relative z-10">
-                    <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                    <div className="relative z-10">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-xl font-bold text-white group-hover:text-red-400 transition-colors">{project.title}</h3>
-                        {!project.previewImage && project.liveUrl && (
-                          <ExternalLink className="h-5 w-5 text-gray-500 hover:text-red-400 cursor-pointer" onClick={() => window.open(project.liveUrl, "_blank")} />
-                        )}
-                      </div>
-                      <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-2">{project.description}</p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tech.map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-0.5 bg-red-900/10 text-red-300 text-[10px] font-semibold rounded-full border border-red-900/20 uppercase"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-fr">
+              {visibleProjects.map((project, index) => {
+                return (
+                  <FadeIn key={index} delay={index * 0.1} className="md:col-span-1">
+                    <Card className="border-gray-800 hover:border-red-600 group overflow-hidden flex flex-col h-full bg-gray-950/50 backdrop-blur-sm relative">
+                      {/* 1. Div Principal: Imagen */}
+                      {project.previewImage && (
+                        <div className="relative overflow-hidden border-b border-gray-800 h-[200px] shrink-0">
+                          <img
+                            src={project.previewImage}
+                            alt={project.title}
+                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            {project.liveUrl && (
+                              <Button size="sm" className="rounded-full" onClick={() => window.open(project.liveUrl, "_blank")}>
+                                <ExternalLink className="h-4 w-4 mr-2" />
+                                Live
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      )}
 
-                    <div className="flex gap-3 relative z-10">
-                      {project.githubUrl && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="h-8 text-[11px] font-bold border-gray-700 hover:border-red-600"
-                          onClick={() => window.open(project.githubUrl, "_blank")}
-                        >
-                          <FaGithub className="mr-2 h-3.5 w-3.5" />
-                          Ver repo
-                        </Button>
-                      )}
-                      {project.liveUrl && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-8 text-[11px] font-bold text-gray-400 hover:text-red-400"
-                          onClick={() => window.open(project.liveUrl, "_blank")}
-                        >
-                          <Globe className="mr-2 h-3.5 w-3.5" />
-                          Live Demo
-                        </Button>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </FadeIn>
-              ))}
+                      {/* 2. Div Principal: Contenido */}
+                      <CardContent className={`flex-grow flex flex-col relative z-10 ${project.previewImage ? 'p-6' : 'p-8 pt-10'}`}>
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                        
+                        <div className={`relative z-10 flex flex-col h-full justify-between ${project.previewImage ? 'min-h-[280px]' : ''}`}>
+                          {/* Bloque 1: Título */}
+                          <div className="flex justify-between items-start">
+                            <h3 className="text-xl font-bold text-white group-hover:text-red-400 transition-colors uppercase tracking-tight">
+                              {project.title}
+                            </h3>
+                            {!project.previewImage && project.liveUrl && (
+                              <ExternalLink className="h-5 w-5 text-gray-500 hover:text-red-400 cursor-pointer" onClick={() => window.open(project.liveUrl, "_blank")} />
+                            )}
+                          </div>
+
+                          {/* Bloque 2: Descripción (Centrada) */}
+                          <p className="text-gray-400 text-sm leading-relaxed text-left line-clamp-2">
+                            {project.description}
+                          </p>
+                          
+                          {/* Bloque 3: Footer (Tech + Buttons) */}
+                          <div className="space-y-8">
+                            <TechSlider tech={project.tech} />
+
+                            <div className="flex gap-4 relative z-10 pb-2">
+                              {project.githubUrl && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="h-9 px-4 text-[11px] font-bold border-gray-700 hover:border-red-600"
+                                  onClick={() => window.open(project.githubUrl, "_blank")}
+                                >
+                                  <FaGithub className="mr-2 h-4 w-4" />
+                                  Ver repo
+                                </Button>
+                              )}
+                              {project.liveUrl && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="h-9 px-4 text-[11px] font-bold border-gray-700 hover:border-red-600"
+                                  onClick={() => window.open(project.liveUrl, "_blank")}
+                                >
+                                  <Globe className="mr-2 h-4 w-4" />
+                                  Live
+                                </Button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </FadeIn>
+                );
+              })}
             </div>
+
+            {/* See More Button */}
+            {projects.length > 4 && (
+              <div className="mt-16 flex justify-center">
+                <Button
+                  variant="ghost"
+                  className="group flex flex-col items-center gap-2 text-gray-400 hover:text-red-400 font-bold transition-all"
+                  onClick={() => setShowAllProjects(!showAllProjects)}
+                >
+                  <span className="uppercase tracking-[0.2em] text-xs">
+                    {showAllProjects ? "Ver menos" : "Ver más proyectos"}
+                  </span>
+                  {showAllProjects ? (
+                    <ChevronUp className="h-5 w-5 animate-bounce-slow" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 animate-bounce-slow" />
+                  )}
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -343,7 +414,7 @@ export default function App() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full h-12 w-12 border-gray-800 hover:border-red-600"
+                  className="rounded-full h-12 w-12 border-gray-800 hover:border-red-600 cursor-pointer"
                   onClick={() => window.open("https://github.com/C0kke", "_blank")}
                 >
                   <FaGithub className="h-5 w-5" />
@@ -351,7 +422,7 @@ export default function App() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="rounded-full h-12 w-12 border-gray-800 hover:border-red-600"
+                  className="rounded-full h-12 w-12 border-gray-800 hover:border-red-600 cursor-pointer"
                   onClick={() => window.open("https://www.linkedin.com/in/jorge-bustos-%C3%A1lvarez-655763262/", "_blank")}
                 >
                   <FaLinkedin className="h-5 w-5" />
