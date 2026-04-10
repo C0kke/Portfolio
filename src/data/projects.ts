@@ -90,6 +90,7 @@ export const projects: Project[] = [
     size: "small",
     githubUrl: "https://github.com/C0kke/ProyectBreakout",
     previewImage: "/previews/breakout.png",
+    liveUrl: "https://c0kke.github.io/ProyectBreakout/",
   },
   {
     title: "Coquimbo VR - Nivel 1",

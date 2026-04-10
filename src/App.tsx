@@ -14,6 +14,7 @@ import {
   ChevronUp,
   ChevronLeft,
   ChevronRight,
+  Download,
   // Chrome is not in lucide-react, using FaChrome
 } from "lucide-react"
 import { FaReact, FaHtml5, FaGithub, FaCloudflare, FaLinkedin, FaChrome } from "react-icons/fa";
@@ -25,6 +26,14 @@ import { Card, CardContent } from "@/components/ui/card"
 import { FadeIn } from "@/components/FadeIn"
 import { projects } from "@/data/projects"
 import { useState, useRef } from "react";
+
+const getAssetPath = (path: string) => {
+  if (!path) return "";
+  if (path.startsWith('http') || path.startsWith('mailto') || path.startsWith('tel')) return path;
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${cleanPath}`;
+};
 
 const TechSlider = ({ tech }: { tech: string[] }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -47,8 +56,8 @@ const TechSlider = ({ tech }: { tech: string[] }) => {
       >
         <ChevronLeft className="h-4 w-4 text-red-400" />
       </button>
-      
-      <div 
+
+      <div
         ref={scrollRef}
         className="flex flex-row gap-2 mb-8 overflow-x-auto no-scrollbar whitespace-nowrap snap-x px-4"
       >
@@ -98,18 +107,32 @@ export default function App() {
           </FadeIn>
           <FadeIn delay={0.4}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8 py-3 group" onClick={() => window.location.href = "mailto:coke.bustos.alvarez@gmail.com"}>
+              <Button
+                variant="outline"
+                size="lg"
+                className="px-8 py-3 group border-red-500/50 hover:bg-red-600 hover:text-white transition-all cursor-pointer"
+                onClick={() => window.location.href = "mailto:coke.bustos.alvarez@gmail.com"}
+              >
                 <Mail className="mr-2 h-5 w-5 group-hover:animate-bounce" />
                 Contactar
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="px-8 py-3 group"
+                className="px-8 py-3 group border-red-500/50 hover:bg-red-600 hover:text-white transition-all cursor-pointer"
                 onClick={() => window.location.href = "https://github.com/C0kke"}
               >
                 <FaGithub className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
                 Ver Proyectos
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-3 group border-red-500/50 hover:bg-red-600 hover:text-white transition-all cursor-pointer"
+                onClick={() => window.open(getAssetPath('/cv.pdf'), '_blank')}
+              >
+                <Download className="mr-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
+                Descargar CV
               </Button>
             </div>
           </FadeIn>
@@ -281,7 +304,7 @@ export default function App() {
                       {project.previewImage && (
                         <div className="relative overflow-hidden border-b border-gray-800 h-[200px] shrink-0">
                           <img
-                            src={project.previewImage}
+                            src={getAssetPath(project.previewImage)}
                             alt={project.title}
                             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                           />
@@ -299,7 +322,7 @@ export default function App() {
                       {/* 2. Div Principal: Contenido */}
                       <CardContent className={`flex-grow flex flex-col relative z-10 ${project.previewImage ? 'p-6' : 'p-8 pt-10'}`}>
                         <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                        
+
                         <div className={`relative z-10 flex flex-col h-full justify-between ${project.previewImage ? 'min-h-[280px]' : ''}`}>
                           {/* Bloque 1: Título */}
                           <div className="flex justify-between items-start">
@@ -315,7 +338,7 @@ export default function App() {
                           <p className="text-gray-400 text-sm leading-relaxed text-left line-clamp-2">
                             {project.description}
                           </p>
-                          
+
                           {/* Bloque 3: Footer (Tech + Buttons) */}
                           <div className="space-y-8">
                             <TechSlider tech={project.tech} />
