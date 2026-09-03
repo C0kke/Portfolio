@@ -29,6 +29,15 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
+    title: "Preulive",
+    description: "Preuniversitario Online",
+    tech: ["Typescript", "SQL", "WebPay", "Nodemailer"],
+    size: "large",
+    githubUrl: "",
+    liveUrl: "https://preulive.cl",
+    previewImage: "/previews/preulive.png",
+  },
+  {
     title: "Catálogo Maranatha",
     description: "Catálogo de productos para ferretería local",
     tech: ["React", "Supabase", "Cloudinary", "Cloudflare", "Vercel"],
@@ -36,15 +45,6 @@ export const projects: Project[] = [
     githubUrl: "",
     liveUrl: "https://ferremaranatha.cl",
     previewImage: "/previews/ferremaranatha.png",
-  },
-  {
-    title: "Fit Fashion",
-    description:
-      "E-commerce de moda con arquitectura basada en microservicios y k8s",
-    tech: ["JavaScript", "React", "Go", "Python", "API REST", "Docker", "Kubernetes", "PostgreSQL", "RabbitMQ", "Kafka"],
-    size: "large",
-    githubUrl: "https://github.com/C0kke/FitFashion",
-    previewImage: "/previews/default.png",
   },
   {
     title: "Encriptador de Texto",
@@ -65,6 +65,24 @@ export const projects: Project[] = [
     previewImage: "/previews/screenmatch.png",
   },
   {
+    title: "Operación Disrrupción",
+    description: "Videojuego 2.5D, peleas entre aliens y un humano. Proyecto universitario",
+    tech: ["Unity", "C#", "Github"],
+    size: "small",
+    githubUrl: "https://github.com/C0kke/Coquimbo_VR_LVL1",
+    previewImage: "/previews/default.png",
+  },
+  {
+    title: "Breakout",
+    description:
+      "Videojuego clásico de romper bloques con una paleta y una pelota.",
+    tech: ["HTML", "Javascript"],
+    size: "small",
+    githubUrl: "https://github.com/C0kke/ProyectBreakout",
+    previewImage: "/previews/breakout.png",
+    liveUrl: "https://c0kke.github.io/ProyectBreakout/",
+  },
+  {
     title: "Sistema de Gestión de Incidencias",
     description:
       "Aplicación full-stack para registrar, asignar y resolver incidencias internas de una organización, permite generar reportes.",
@@ -83,22 +101,12 @@ export const projects: Project[] = [
     previewImage: "/previews/default.png",
   },
   {
-    title: "Breakout",
+    title: "Fit Fashion",
     description:
-      "Videojuego clásico de romper bloques con una paleta y una pelota.",
-    tech: ["HTML", "Javascript"],
-    size: "small",
-    githubUrl: "https://github.com/C0kke/ProyectBreakout",
-    previewImage: "/previews/breakout.png",
-    liveUrl: "https://c0kke.github.io/ProyectBreakout/",
-  },
-  {
-    title: "Coquimbo VR - Nivel 1",
-    description:
-      "Experiencia de realidad virtual del Coquimbo histórico, desarrollada en conjunto con el proyecto RLCA de la Municipalidad de Coquimbo.",
-    tech: ["Unity", "C#", "VR"],
-    size: "small",
-    githubUrl: "https://github.com/C0kke/Coquimbo_VR_LVL1",
+      "E-commerce de moda con arquitectura basada en microservicios y k8s",
+    tech: ["JavaScript", "React", "Go", "Python", "API REST", "Docker", "Kubernetes", "PostgreSQL", "RabbitMQ", "Kafka"],
+    size: "large",
+    githubUrl: "https://github.com/C0kke/FitFashion",
     previewImage: "/previews/default.png",
   },
 ];
