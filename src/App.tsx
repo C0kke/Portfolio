@@ -18,8 +18,8 @@ import {
   // Chrome is not in lucide-react, using FaChrome
 } from "lucide-react"
 import { FaReact, FaHtml5, FaGithub, FaCloudflare, FaLinkedin, FaChrome } from "react-icons/fa";
-import { SiSpring, SiNestjs, SiMongodb } from "react-icons/si";
-import { DiRedis, DiPostgresql } from "react-icons/di";
+import { SiSpring, SiNestjs, SiMongodb, SiNextdotjs } from "react-icons/si";
+import { DiRedis, DiPostgresql, DiDjango } from "react-icons/di";
 import { RiVercelLine } from "react-icons/ri";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -224,6 +224,10 @@ export default function App() {
                       <FaHtml5 className="h-4 w-4" />
                       <span>HTML5 / CSS / JS</span>
                     </div>
+                    <div className="flex items-center justify-center gap-2 text-gray-400">
+                      <SiNextdotjs className="h-4 w-4" />
+                      <span>NextJS</span>
+                    </div>
                   </div>
                 </div>
               </FadeIn>
@@ -239,6 +243,10 @@ export default function App() {
                     <div className="flex items-center justify-center gap-2 text-gray-400">
                       <SiNestjs className="h-4 w-4" />
                       <span>NestJS</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 text-gray-400">
+                      <DiDjango className="h-4 w-4" />
+                      <span>Django</span>
                     </div>
                   </div>
                 </div>
