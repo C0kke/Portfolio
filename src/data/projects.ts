@@ -40,7 +40,7 @@ export const projects: Project[] = [
   {
     title: "Catálogo Maranatha",
     description: "Catálogo de productos para ferretería local",
-    tech: ["React", "Supabase", "Cloudinary", "Cloudflare", "Vercel"],
+    tech: ["React", "SQL", "S3", "Cloudflare"],
     size: "large",
     githubUrl: "",
     liveUrl: "https://ferremaranatha.cl",
@@ -69,8 +69,8 @@ export const projects: Project[] = [
     description: "Videojuego 2.5D, peleas entre aliens y un humano. Proyecto universitario",
     tech: ["Unity", "C#", "Github"],
     size: "small",
-    githubUrl: "https://github.com/C0kke/Coquimbo_VR_LVL1",
-    previewImage: "/previews/default.png",
+    githubUrl: "",
+    previewImage: "/previews/OperacionDisrupcion.png",
   },
   {
     title: "Breakout",
